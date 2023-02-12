@@ -1,0 +1,104 @@
+{
+    "template": "<style>\n.oven_widget .btn1 .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(35deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(35deg) saturate(1700%);\n  }\n.oven_widget .btn2 .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(340deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(340deg) saturate(1700%);\n  }\n\n.title-label {padding-bottom: 10px;text-align: right;}\n</style>\n<div class=\"oven_widget\">\n  <div class=\"title-label\" ng-if=\"(config.top_label)\">{{config.top_label}}</div>\n  \n  <div class=\"row\" style=\"padding-bottom:15px;\">\n\t\t<div class=\"col col-xs-3\">\n      <div ng-if=\"itemValue(config.etat_four_item) === 'OFF'\">\n        <button class=\"btn1\" style=\"background: inherit; border:0\" ng-click=\"sendCmd(config.switch_four_item, 'ON')\">\n           <widget-icon iconset=\"'smarthome-set'\" icon=\"'power'\" size=\"42\"/>\n        </button>\n      </div>\n       <div ng-if=\"itemValue(config.etat_four_item) === 'ON'\">\n        <button class=\"btn2\" style=\"background: inherit; border:0\" ng-click=\"sendCmd(config.switch_four_item, 'OFF')\">\n           <widget-icon iconset=\"'smarthome-set'\" icon=\"'power'\" size=\"42\"/>\n        </button>\n      </div> \n\t  </div>\n    <div class=\"col col-xs-4 text-left\">\n      <span ng-if=\"(config.etat_four_label)\">{{config.etat_four_label}}</span>\n      <span ng-if=\"!(config.etat_four_label) && !(config.etat_four_item)\">Etat four ?</span>\n    \t<div>\n        <span style=\"color: rgb(0, 204, 102); font-size: 18px\" ng-if=\"(itemValue(config.etat_four_item) === 'OFF')\">{{itemValue(config.etat_four_item)}}</span>\n        <span style=\"color: rgb(255, 112, 77); font-size: 18px\" ng-if=\"(itemValue(config.etat_four_item) === 'ON')\">{{itemValue(config.etat_four_item)}}</span>\n      </div>\n    </div>\n    <div class=\"col col-xs-4 text-left\">\n      <span ng-if=\"(config.porte_four_label)\">{{config.porte_four_label}}</span>\n      <span ng-if=\"!(config.porte_four_label) || !(config.porte_four_item)\">Etat porte ?</span>\n      <div>\n        <span style=\"color: rgb(0, 204, 102); font-size: 18px\" ng-if=\"(itemValue(config.porte_four_item) === 'fermée')\">{{itemValue(config.porte_four_item)}}</span>\n        <span style=\"color: rgb(255, 112, 77); font-size: 18px\" ng-if=\"(itemValue(config.porte_four_item) === 'ouverte')\">{{itemValue(config.porte_four_item)}}</span>\n      </div>\n    </div>\t\n  </div>\n\n\t<div class=\"row\" style=\"padding-bottom:15px;\">\n    <div class=\"col col-xs-3\">\n      <widget-icon iconset=\"'smarthome-set'\" icon=\"'temperature'\"  size=\"42\"/>\n  \t</div>\n    <div class=\"col col-xs-4 text-left\">\n      <span ng-if=\"(config.prechauffage_four_label)\">{{config.prechauffage_four_label}}</span>\n      <span ng-if=\"!(config.prechauffage_four_label) || !(config.prechauffage_four_item)\">Préchauffage ?</span>\n    \t<div>\n        <span style=\"color: rgb(0, 204, 102); font-size: 18px\" ng-if=\"(itemValue(config.prechauffage_four_item) === 'four chaud')\">{{itemValue(config.prechauffage_four_item)}}</span>\n        <span style=\"color: rgb(255, 112, 77); font-size: 18px\" ng-if=\"(itemValue(config.prechauffage_four_item) === 'en cours...')\">{{itemValue(config.prechauffage_four_item)}}</span>\n      </div>\n    </div>\t\n    <div class=\"col col-xs-4 text-left\">\n      <span ng-if=\"(config.temperature_cible_four_label)\">{{config.temperature_cible_four_label}}</span>\n      <span ng-if=\"!(config.temperature_cible_four_label) || !(config.temperature_cible_four_item)\">Température cible ?</span>\n    \t<div>\n        <span style=\"color: rgb(0, 204, 102); font-size: 18px\" ng-if=\"(itemValue(config.prechauffage_four_item) === 'four chaud')\">{{itemValue(config.temperature_cible_four_item)}} °C</span>\n        <span style=\"color: rgb(255, 112, 77); font-size: 18px\" ng-if=\"(itemValue(config.prechauffage_four_item) === 'en cours...')\">{{itemValue(config.temperature_cible_four_item)}} °C</span>\n      </div>\n    </div>\t\n  </div>\n\n\t<div class=\"row\" style=\"padding-bottom:15px;\">\n    <div class=\"col col-xs-3\">\n      <widget-icon iconset=\"'smarthome-set'\" icon=\"'thermostat'\"  size=\"42\"/>\n  \t</div>\n    <div class=\"col col-xs-4 text-left\">\n      <span ng-if=\"(config.duree_cuisson_four_label)\">{{config.duree_cuisson_four_label}}</span>\n      <span ng-if=\"!(config.duree_cuisson_four_label)\">Durée de cuisson</span>\n    \t<div style=\"color: rgb(0, 204, 102); font-size: 18px\">\n        <span ng-if=\"(config.duree_cuisson_four_item)=''\">{{itemValue(config.duree_cuisson_four_item)}}</span>\n        <span ng-if=\"(config.duree_cuisson_four_item)\">{{itemValue(config.duree_cuisson_four_item)}} min</span>\n      </div>\n    </div>\t\n    <div class=\"col col-xs-4 text-left\">\n      <span ng-if=\"(config.duree_cuisson_restante_four_label)\">{{config.duree_cuisson_restante_four_label}}</span>\n      <span ng-if=\"!(config.duree_cuisson_restante_four_label)\">Cuisson restante</span>\n    \t<div style=\"color: rgb(0, 204, 102); font-size: 18px\">\n        <span ng-if=\"(config.duree_cuisson_restante_four_item)=''\">{{itemValue(config.duree_cuisson_restante_four_item).split('.')[0]}}</span>\n        <span ng-if=\"(config.duree_cuisson_restante_four_item)\">{{itemValue(config.duree_cuisson_restante_four_item).split('.')[0]}} min</span>\n      </div>\n    </div>\t\n  </div>\n\n\t<div class=\"row\" style=\"padding-bottom:15px;\">\n    <div class=\"col col-xs-9 text-center\" style=\"color: rgb(0, 153, 255); font-size: 18px\">\n      <span ng-if=\"(config.program_four_label) && (config.program_four_item)\">{{config.program_four_label}} : {{itemValue(config.program_four_item)}}</span>\n      <span ng-if=\"!(config.program_four_label) && (config.program_four_item)\">Programme four : {{itemValue(config.program_four_item)}}</span>\n      <span ng-if=\"!(config.program_four_item)\"></span>\n    </div>\n  </div>  \n\n</div>\n ",
+    "name": "Sauter Oven",
+    "settings": [
+        {
+            "type": "string",
+            "id": "top_label",
+            "label": "Top Label"
+        },
+        {
+            "type": "string",
+            "id": "etat_four_label",
+            "default": "Etat four",
+            "label": "Etat four: Label"
+        },
+        {
+            "type": "item",
+            "id": "etat_four_item",
+            "label": "Etat four: Item",
+            "default": "-"
+        },
+        {
+            "type": "string",
+            "id": "program_four_label",
+            "label": "Programme: Label",
+            "default": "Programme"
+        },
+        {
+            "type": "item",
+            "id": "program_four_item",
+            "label": "Programme four: Item",
+            "default": "-"
+        },
+        {
+            "type": "string",
+            "id": "prechauffage_four_label",
+            "label": "Préchauffage: Label",
+            "default": "Préchauffage"
+        },
+        {
+            "type": "item",
+            "id": "prechauffage_four_item",
+            "label": "Préchauffage: Item",
+            "default": "-"
+        },
+        {
+            "type": "string",
+            "id": "temperature_cible_four_label",
+            "label": "Température cible: Label",
+            "default": "Température cible"
+        },
+        {
+            "type": "item",
+            "id": "temperature_cible_four_item",
+            "label": "Température cible: Item",
+            "default": "-"
+        },
+        {
+            "type": "string",
+            "id": "duree_cuisson_four_label",
+            "label": "Durée de cuisson: Label",
+            "default": "Durée de cuisson"
+        },
+        {
+            "type": "item",
+            "id": "duree_cuisson_four_item",
+            "label": "Durée de cuisson: Item",
+            "default": "-"
+        },
+        {
+            "type": "string",
+            "id": "duree_cuisson_restante_four_label",
+            "label": "Durée de cuisson restante: Label",
+            "default": "Durée de cuisson restante"
+        },
+        {
+            "type": "item",
+            "id": "duree_cuisson_restante_four_item",
+            "label": "Durée de cuisson restante: Item",
+            "default": "-"
+        },
+        {
+            "type": "string",
+            "id": "porte_four_label",
+            "label": "Etat porte: Label",
+            "default": "Etat porte"
+        },
+        {
+            "type": "item",
+            "id": "porte_four_item",
+            "label": "Etat porte: Item",
+            "default": "-"
+        },
+        {
+            "type": "item",
+            "label": "Switch On/Off Four: item",
+            "id": "switch_four_item",
+            "default": "-"
+        }
+    ],
+    "author": "Hervé Marion",
+    "source_url": "https://raw.githubusercontent.com/Hmarionx/habpanel-oven/master/oven.widget.json",
+    "readme_url": "https://github.com/Hmarionx/habpanel-oven"
+}
